@@ -7,7 +7,8 @@
   <title>Validador de CNPJ Alfanumérico | JavaScript, Java, Python e TypeScript </title>
   <meta name="description"
     content="Validar CNPJs Alfanuméricos e calcular o dígito verificador (DV). Inclui exemplos de implementação em JavaScript, Java, Python e TypeScript.">
-  <meta name="keywords" content="cnpj alfanumérico, validar cnpj, calcular dv cnpj, validador cnpj, gerador cnpj, javascript, java, python, typescript">
+  <meta name="keywords"
+    content="cnpj alfanumérico, validar cnpj, calcular dv cnpj, validador cnpj, gerador cnpj, javascript, java, python, typescript">
   <meta name="google-site-verification" content="k2nQOYapQVIt3pnkIZrmUGnjD4wqOJ-GGMop_VIwhXk" />
   <link rel="canonical" href="http://marcelo-lourenco.github.io/validador-cnpj-alfanumerico">
   <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
@@ -18,23 +19,39 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6YBTTPJ0KC"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-  
+
     gtag('config', 'G-6YBTTPJ0KC');
   </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NQTJ7ZD3');</script>
+  <!-- End Google Tag Manager -->
 </head>
 
 <body class="bg-light" data-aos-easing="ease-out-quad" data-aos-duration="700" data-aos-delay="0">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQTJ7ZD3" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <header class="bg-dark pt-9 pb-11 d-md-block">
     <div class="container-md">
       <div class="row align-items-center">
         <div class="col">
           <h1 class="fw-bold text-white mb-2">
-            CNPJ Alfanumérico
+            Validador de CNPJ Alfanumérico
           </h1>
           <p class="fs-lg text-white mb-0">
-            Valida CNPJ alfanumérico e Calcula Dígito Verificador
+            Gera CNPJ alfanumérico | Valida CNPJ alfanumérico | Calcula Dígito Verificador
           </p>
         </div>
       </div>
@@ -42,17 +59,55 @@
   </header>
 
   <main class="pb-8 pb-md-11 mt-md-n6">
-    <div class="container-md">
+    <section class="px-5">
       <div class="row">
 
-        <!-- Card de Validação de CNPJ -->
-        <div class="col-12 col-md-6">
+        <!-- Card de Gerar CNPJ -->
+        <div class="col-12 col-md-4">
+          <div class="card card-bleed shadow-light-lg mb-6">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h2 class="mb-0 text-gray-700">
+                    <i class="fa-solid fa-wand-sparkles me-2" aria-hidden="true"></i> Gerar CNPJ
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group mb-3">
+                <label class="form-label" for="cnpjGerado">CNPJ Alfanumérico</label>
+                <input class="form-control" id="cnpjGerado" maxlength="18" placeholder="CNPJ">
+              </div>
+
+              <div id="resultadoGeracao" style="display: none;">
+                <div class="alert mt-3 mb-0" id="alertGeracao">
+                  <strong>
+                    <span id="mensagemGeracao"></span>
+                  </strong>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center mt-4">
+                <button type="button" id="btnGerarCNPJ" class="btn btn-primary me-3"  onclick="atualizarCNPJ()">
+                  <i class="fas fa-wand-sparkles me-2" aria-hidden="true"></i> Gerar
+                </button>
+                <button type="button" class="btn btn-outline-secondary" onclick="limpaCNPJ();">
+                  <i class="fas fa-eraser me-2" aria-hidden="true"></i> Limpar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Validar CNPJ -->
+        <div class="col-12 col-md-4">
           <div class="card card-bleed shadow-light-lg mb-6">
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col">
                   <h2 class="mb-0  text-gray-700">
-                    <i class="fas fa-check-circle me-2" aria-hidden="true"></i> Validação de CNPJ
+                    <i class="fas fa-check-circle me-2" aria-hidden="true"></i> Validar CNPJ
                   </h2>
                 </div>
               </div>
@@ -72,10 +127,10 @@
               </div>
 
               <div class="d-flex align-items-center mt-4">
-                <button type="button" class="btn btn-primary me-3" onclick="valida();">
+                <button type="button" class="btn btn-primary me-3" onclick="validar();">
                   <i class="fas fa-check me-2" aria-hidden="true"></i> Validar
                 </button>
-                <button type="button" class="btn btn-outline-secondary" onclick="limpaValidacao();">
+                <button type="button" class="btn btn-outline-secondary" onclick="limparValidacao();">
                   <i class="fas fa-eraser me-2" aria-hidden="true"></i> Limpar
                 </button>
               </div>
@@ -83,14 +138,14 @@
           </div>
         </div>
 
-        <!-- Card de Cálculo de DV -->
-        <div class="col-12 col-md-6">
+        <!-- Card de Calcular DV -->
+        <div class="col-12 col-md-4">
           <div class="card card-bleed shadow-light-lg mb-6">
             <div class="card-header">
               <div class="row align-items-center">
                 <div class="col">
                   <h2 class="mb-0 text-gray-700">
-                    <i class="fas fa-calculator me-2" aria-hidden="true"></i> Cálculo de DV
+                    <i class="fas fa-calculator me-2" aria-hidden="true"></i> Calcular DV
                   </h2>
                 </div>
               </div>
@@ -111,18 +166,21 @@
               <div id="mensagemErroCalculo" class="alert alert-danger mt-3" role="alert" style="display: none;"></div>
 
               <div class="d-flex align-items-center mt-4">
-                <button type="button" class="btn btn-primary me-3" onclick="calcula();">
+                <button type="button" class="btn btn-primary me-3" onclick="calcular();">
                   <i class="fas fa-calculator me-2" aria-hidden="true"></i> Calcular
                 </button>
-                <button type="button" class="btn btn-outline-secondary" onclick="limpaCalculo();">
+                <button type="button" class="btn btn-outline-secondary" onclick="limparCalculo();">
                   <i class="fas fa-eraser me-2" aria-hidden="true"></i> Limpar
                 </button>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
+      </div>
+    </section>
+
+    <section class="px-5 mb-6">
 
       <!-- Card de Exemplos de Implementação -->
       <div class="card card-bleed shadow-light-lg mb-6">
@@ -293,7 +351,7 @@
         </div>
       </div>
 
-    </div>
+    </section>
   </main>
 
   <!-- CURVE -->
@@ -358,75 +416,12 @@
   </footer>
 
   <script type="text/javascript">
-    function calcula() {
-      const cnpjSemDV = document.getElementById("cnpjSemDV").value;
-      const resultadoCalculoDV = document.getElementById("resultadoCalculoDV");
-      const dvCalculado = document.getElementById("dvCalculado");
-      const mensagemErro = document.getElementById("mensagemErroCalculo");
-      resultadoCalculoDV.style.display = "none";
-      dvCalculado.innerHTML = "";
-      mensagemErro.style.display = "none";
-      mensagemErro.innerHTML = "";
-      try {
-        const dv = CNPJ.calculaDV(cnpjSemDV);
-        dvCalculado.innerHTML = dv;
-        resultadoCalculoDV.style.display = "block";
-      } catch (e) {
-        mensagemErro.style.display = "block";
-        mensagemErro.innerHTML = e.message;
-      }
-    }
-
-    function limpaCalculo() {
-      const cnpjSemDV = document.getElementById("cnpjSemDV");
-      const resultadoCalculoDV = document.getElementById("resultadoCalculoDV");
-      const dvCalculado = document.getElementById("dvCalculado");
-      const mensagemErro = document.getElementById("mensagemErroCalculo");
-      cnpjSemDV.value = "";
-      resultadoCalculoDV.style.display = "none";
-      dvCalculado.innerHTML = "";
-      mensagemErro.style.display = "none";
-      mensagemErro.innerHTML = "";
-    }
-
-    function valida() {
-      const cnpj = document.getElementById("cnpj").value;
-      const resultadoValidacao = document.getElementById("resultadoValidacao");
-      const mensagemValidacao = document.getElementById("mensagemValidacao");
-      const alertValidacao = document.getElementById("alertValidacao");
-      resultadoValidacao.style.display = "none";
-      mensagemValidacao.innerHTML = "";
-      const isValid = CNPJ.isValid(cnpj);
-      if (isValid) {
-        alertValidacao.className = "alert alert-success mt-3 mb-0";
-        mensagemValidacao.innerHTML = "Válido";
-      } else {
-        alertValidacao.className = "alert alert-danger mt-3 mb-0";
-        mensagemValidacao.innerHTML = "Inválido";
-      }
-      resultadoValidacao.style.display = "block";
-    }
-
-    function limpaValidacao() {
-      const cnpj = document.getElementById("cnpj");
-      const resultadoValidacao = document.getElementById("resultadoValidacao");
-      const mensagemValidacao = document.getElementById("mensagemValidacao");
-      cnpj.value = "";
-      resultadoValidacao.style.display = "none";
-      mensagemValidacao.innerHTML = "";
-    }
-
-    function toggleVisualizacao(idElemento) {
-      var elemento = document.getElementById(idElemento);
-      if (elemento.style.display === "none") {
-        elemento.style.display = "block";
-      } else {
-        elemento.style.display = "none";
-      }
-    }
+   
   </script>
   <script type="text/javascript" src="assets/scripts/prism.js"></script>
+  <script type="text/javascript" src="assets/scripts/gera-cnpj.js"></script>
   <script type="text/javascript" src="javascript/cnpj.js"></script>
+ 
 </body>
 
 </html>
