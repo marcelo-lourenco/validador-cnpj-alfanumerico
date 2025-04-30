@@ -30,7 +30,7 @@ A página estará disponível em [http://localhost:8080/index.html](http://local
 
 ## Créditos
 
-Este projeto foi desenvolvido e disponibilizado pela [Receita Federal](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/cnpj-alfanumerico)
+Os códigos da seção "Implementação" foram disponibilizados pela [Receita Federal](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/cnpj-alfanumerico)
 
 ---
 
