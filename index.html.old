@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validador de CNPJ Alfanumérico | JavaScript, Java, Python e TypeScript </title>
+  <meta name="description"
+    content="Validar CNPJs Alfanuméricos e calcular o dígito verificador (DV). Inclui exemplos de implementação em JavaScript, Java, Python e TypeScript.">
+  <meta name="keywords"
+    content="cnpj alfanumérico, validar cnpj, calcular dv cnpj, validador cnpj, gerador cnpj, javascript, java, python, typescript">
+  <meta name="google-site-verification" content="k2nQOYapQVIt3pnkIZrmUGnjD4wqOJ-GGMop_VIwhXk" />
+  <link rel="canonical" href="http://marcelo-lourenco.github.io/validador-cnpj-alfanumerico">
+
+  <!-- Redirecionamento para o novo site -->
+  <link rel="canonical" href="https://box4.dev/validador-cnpj-alfanumerico/">
+  <meta http-equiv="refresh" content="5; url=https://box4.dev/validador-cnpj-alfanumerico/">
+  <script type="text/javascript">
+    window.location.href = "https://box4.dev/validador-cnpj-alfanumerico/";
+  </script>
+
+  <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6YBTTPJ0KC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-6YBTTPJ0KC');
+  </script>
+
+  <!-- Google Tag Manager -->
+  <script>(function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NQTJ7ZD3');</script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body class="bg-light" data-aos-easing="ease-out-quad" data-aos-duration="700" data-aos-delay="0">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NQTJ7ZD3" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="bg-dark pt-9 pb-11 d-md-block">
+    <div class="container-md">
+      <div class="row align-items-center">
+        <div class="col">
+          <h1 class="fw-bold text-white mb-2">
+            Validador de CNPJ Alfanumérico
+          </h1>
+          <p class="fs-lg text-white mb-0">
+            Gera CNPJ alfanumérico | Valida CNPJ alfanumérico | Calcula Dígito Verificador
+        <div class="col" style="text-align: center;">
+          <h1 class="fw-bold text-white mb-2">Esta página mudou-se!</h1>
+          <p class="fs-lg text-white mb-0">Você será redirecionado em breve.</p>
+          <p class="fs-lg text-white mb-0 mt-4">
+            Se o redirecionamento não funcionar, <a href="https://box4.dev/validador-cnpj-alfanumerico/"
+              style="color: #fff; text-decoration: underline;">clique aqui</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pb-8 pb-md-11 mt-md-n6">
+    <section class="px-5">
+      <div class="row">
+
+        <!-- Card de Gerar CNPJ -->
+        <div class="col-12 col-md-4">
+          <div class="card card-bleed shadow-light-lg mb-6">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h2 class="mb-0 text-gray-700">
+                    <i class="fa-solid fa-wand-sparkles me-2" aria-hidden="true"></i> Gerar CNPJ
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group mb-3">
+                <label class="form-label" for="cnpjGerado">CNPJ Alfanumérico</label>
+                <input class="form-control" id="cnpjGerado" maxlength="18" placeholder="CNPJ">
+              </div>
+
+              <div id="resultadoGeracao" style="display: none;">
+                <div class="alert mt-3 mb-0" id="alertGeracao">
+                  <strong>
+                    <span id="mensagemGeracao"></span>
+                  </strong>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center mt-4">
+                <button type="button" id="btnGerarCNPJ" class="btn btn-primary me-3"  onclick="atualizarCNPJ()">
+                  <i class="fas fa-wand-sparkles me-2" aria-hidden="true"></i> Gerar
+                </button>
+                <button type="button" class="btn btn-outline-secondary" onclick="limpaCNPJ();">
+                  <i class="fas fa-eraser me-2" aria-hidden="true"></i> Limpar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card Validar CNPJ -->
+        <div class="col-12 col-md-4">
+          <div class="card card-bleed shadow-light-lg mb-6">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h2 class="mb-0  text-gray-700">
+                    <i class="fas fa-check-circle me-2" aria-hidden="true"></i> Validar CNPJ
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group mb-3">
+                <label class="form-label" for="cnpj">CNPJ completo</label>
+                <input class="form-control" id="cnpj" maxlength="18" placeholder="Digite o CNPJ com DV">
+              </div>
+
+              <div id="resultadoValidacao" style="display: none;">
+                <div class="alert mt-3 mb-0" id="alertValidacao">
+                  <strong>
+                    <span id="mensagemValidacao"></span>
+                  </strong>
+                </div>
+              </div>
+
+              <div class="d-flex align-items-center mt-4">
+                <button type="button" class="btn btn-primary me-3" onclick="validar();">
+                  <i class="fas fa-check me-2" aria-hidden="true"></i> Validar
+                </button>
+                <button type="button" class="btn btn-outline-secondary" onclick="limparValidacao();">
+                  <i class="fas fa-eraser me-2" aria-hidden="true"></i> Limpar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card de Calcular DV -->
+        <div class="col-12 col-md-4">
+          <div class="card card-bleed shadow-light-lg mb-6">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h2 class="mb-0 text-gray-700">
+                    <i class="fas fa-calculator me-2" aria-hidden="true"></i> Calcular DV
+                  </h2>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group mb-3">
+                <label class="form-label" for="cnpjSemDV">CNPJ sem DV</label>
+                <input class="form-control" id="cnpjSemDV" maxlength="15" placeholder="Digite o CNPJ sem DV">
+              </div>
+
+              <div id="resultadoCalculoDV" style="display: none;">
+                <div class="alert alert-success mt-3 mb-0">
+                  <strong>DV Calculado: </strong>
+                  <span id="dvCalculado" class="fw-bold"></span>
+                </div>
+              </div>
+
+              <div id="mensagemErroCalculo" class="alert alert-danger mt-3" role="alert" style="display: none;"></div>
+
+              <div class="d-flex align-items-center mt-4">
+                <button type="button" class="btn btn-primary me-3" onclick="calcular();">
+                  <i class="fas fa-calculator me-2" aria-hidden="true"></i> Calcular
+                </button>
+                <button type="button" class="btn btn-outline-secondary" onclick="limparCalculo();">
+                  <i class="fas fa-eraser me-2" aria-hidden="true"></i> Limpar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="px-5 mb-6">
+
+      <!-- Card de Exemplos de Implementação -->
+      <div class="card card-bleed shadow-light-lg mb-6">
+        <div class="card-header">
+          <div class="row align-items-center">
+            <div class="col">
+              <h2 class="mb-0  text-gray-700">
+                <i class="fas fa-code me-2" aria-hidden="true"></i> Implementação
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+
+          <!-- List group -->
+          <div class="list-group list-group-flush">
+
+            <!-- JavaScript -->
+            <div class="list-group-item">
+              <div class="row align-items-center ">
+                <div class="col-auto">
+                  <div class="icon icon-sm text-gray-700">
+                    <i class="fab fa-js fs-3" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col ms-n5">
+                  <h3 class="mb-0 h4">
+                    JavaScript
+                  </h3>
+                  <small class="text-gray-700">
+                    Código JavaScript para validação do CNPJ Alfanumérico
+                  </small>
+                </div>
+                <div class="col-auto">
+                  <button type="button" class="btn btn-sm btn-outline-primary"
+                    onclick="toggleVisualizacao('fonteExemploJavascript')">
+                    <i class="fas fa-eye me-1" aria-hidden="true"></i> Ver o código
+                  </button>
+                </div>
+              </div>
+              <div id="fonteExemploJavascript" style="display: none;" class="mt-3">
+                <h5 class="text-muted mb-3">cnpj.js</h5>
+                <pre class="language-javascript" data-src="javascript/cnpj.js" data-download-link
+                  data-prismjs-copy="Copiar" data-prismjs-copy-error="Erro ao copiar!"
+                  data-prismjs-copy-success="Copiado!"></pre>
+              </div>
+            </div>
+
+            <!-- Java -->
+            <div class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="icon icon-sm text-gray-700">
+                    <i class="fab fa-java fs-3" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col ms-n5">
+                  <h3 class="mb-0 h4">
+                    Java
+                  </h3>
+                  <small class="text-gray-700">
+                    Código Java para validação do CNPJ Alfanumérico
+                  </small>
+                </div>
+                <div class="col-auto">
+                  <button type="button" class="btn btn-sm btn-outline-primary"
+                    onclick="toggleVisualizacao('fonteExemploJava')">
+                    <i class="fas fa-eye me-1" aria-hidden="true"></i> Ver o código
+                  </button>
+                </div>
+              </div>
+              <div id="fonteExemploJava" style="display: none;" class="mt-3">
+                <h5 class="text-muted mb-3">CNPJValidator.java</h5>
+                <pre class="language-java" data-src="java/CNPJValidator.java" data-download-link
+                  data-prismjs-copy="Copiar" data-prismjs-copy-error="Erro ao copiar!"
+                  data-prismjs-copy-success="Copiado!"></pre>
+              </div>
+            </div>
+
+            <!-- Python -->
+            <div class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="icon icon-sm text-gray-700">
+                    <i class="fab fa-python fs-3" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col ms-n5">
+                  <h3 class="mb-0 h4">
+                    Python
+                  </h3>
+                  <small class="text-gray-700">
+                    Código Python para validação do CNPJ Alfanumérico
+                  </small>
+                </div>
+                <div class="col-auto">
+                  <button type="button" class="btn btn-sm btn-outline-primary"
+                    onclick="toggleVisualizacao('fonteExemploPython')">
+                    <i class="fas fa-eye me-1" aria-hidden="true"></i> Ver o código
+                  </button>
+                </div>
+              </div>
+              <div id="fonteExemploPython" style="display: none;" class="mt-3">
+                <h5 class="text-muted mb-3">dv.py</h5>
+                <pre class="language-python" data-src="python/dv.py" data-download-link data-prismjs-copy="Copiar"
+                  data-prismjs-copy-error="Erro ao copiar!" data-prismjs-copy-success="Copiado!"></pre>
+                <h5 class="text-muted mb-3 mt-4">cnpj.py</h5>
+                <pre class="language-python" data-src="python/cnpj.py" data-download-link data-prismjs-copy="Copiar"
+                  data-prismjs-copy-error="Erro ao copiar!" data-prismjs-copy-success="Copiado!"></pre>
+              </div>
+            </div>
+
+            <!-- TypeScript -->
+            <div class="list-group-item">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <div class="icon icon-sm text-gray-700">
+                    <i class="fas fa-code fs-3" aria-hidden="true"></i>
+                  </div>
+                </div>
+                <div class="col ms-n5">
+                  <h3 class="mb-0 h4">
+                    TypeScript
+                  </h3>
+                  <small class="text-gray-700">
+                    Código TypeScript para validação do CNPJ Alfanumérico
+                  </small>
+                </div>
+                <div class="col-auto">
+                  <button type="button" class="btn btn-sm btn-outline-primary"
+                    onclick="toggleVisualizacao('fonteExemploTypescript')">
+                    <i class="fas fa-eye me-1" aria-hidden="true"></i> Ver o código
+                  </button>
+                </div>
+              </div>
+              <div id="fonteExemploTypescript" style="display: none;" class="mt-3">
+                <h5 class="text-muted mb-3">cnpj.ts</h5>
+                <pre class="language-typescript" data-src="typescript/cnpj.ts" data-download-link
+                  data-prismjs-copy="Copiar" data-prismjs-copy-error="Erro ao copiar!"
+                  data-prismjs-copy-success="Copiado!"></pre>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Card de Código Fonte -->
+      <div class="card card-bleed shadow-light-lg mb-6">
+        <div class="card-body text-gray-700">
+          <h2 class="mb-3"><i class="fab fa-github me-2" aria-hidden="true"></i> Código Fonte</h2>
+          <p>
+            Projeto completo no <a href="https://github.com/marcelo-lourenco/validador-cnpj-alfanumerico"
+              target="_blank" rel="noopener noreferrer">Repositório GitHub</a>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card de Créditos -->
+      <div class="card card-bleed shadow-light-lg mb-6">
+        <div class="card-body text-gray-700">
+          <h2 class="mb-3"><i class="fas fa-info-circle me-2" aria-hidden="true"></i> Créditos</h2>
+          <p>
+            Os códigos da seção "Implementação" foram disponibilizados pela <a
+              href="https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/cnpj-alfanumerico"
+              target="_blank" rel="noopener noreferrer">Receita Federal</a>.
+          </p>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- CURVE -->
+  <div class="position-relative">
+    <div class="shape shape-bottom shape-fluid-x text-dark">
+      <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 48h2880V0h-720C1442.5 52 720 0 720 0H0v48z" fill="currentColor"></path>
+      </svg>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="py-8 py-md-11 bg-dark">
+    <div class="container">
+      <div class="row col-12">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+          <!-- Brand -->
+          <h3 class="fw-bold text-uppercase text-white mb-4 h6">
+            Geradores de Dados Brasileiros
+          </h3>
+          <p class="text-muted mb-4">
+            <em>Sem vínculo com a Receita Federal</em>
+          </p>
+
+          <!-- Social -->
+          <!-- <ul class="list-unstyled list-inline list-social mb-6 mb-md-0">
+            <li class="list-inline-item list-social-item me-3">
+              <a href="https://www.npmjs.com/package/gerador-br" target="_blank" rel="noopener noreferrer" class="text-decoration-none" aria-label="Pacote NPM do Gerador-BR">
+                <i class="fab fa-npm text-white-50 fs-3" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul> -->
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+          <h3 class="fw-bold text-uppercase text-white mb-4 h6">
+            Geradores
+          </h3>
+          <ul class="list-unstyled text-muted mb-0">
+            <li class="mb-3">
+              <a href="https://www.npmjs.com/package/gerador-br" target="_blank" rel="noopener noreferrer"
+                class="text-reset">
+                <i class="fas fa-box me-2" aria-hidden="true"></i> Pacote NPM - Gerador-BR
+              </a>
+            </li>
+            <li class="mb-3">
+              <a href="https://box4.dev/gerador-br/geradores/" target="_blank"
+                rel="noopener noreferrer" class="text-reset">
+                <i class="fas fa-globe me-2" aria-hidden="true"></i> Online - Gerador de Dados Brasileiros
+              </a>
+            </li>
+            <li class="mb-3">
+              <a href="https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam" target="_blank"
+                rel="noopener noreferrer" class="text-reset">
+                <i class="fab fa-chrome me-2" aria-hidden="true"></i>Extensão Chrome - Gerador de Dados Fictícios
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script type="text/javascript">
+   
+  </script>
+  <script type="text/javascript" src="assets/scripts/prism.js"></script>
+  <script type="text/javascript" src="assets/scripts/gera-cnpj.js"></script>
+  <script type="text/javascript" src="javascript/cnpj.js"></script>
+  <main></main>
+ 
+</body>
+
+</html>
