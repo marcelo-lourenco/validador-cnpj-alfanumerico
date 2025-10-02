@@ -4,7 +4,7 @@ Este projeto oferece exemplos de cálculo de DV e métodos de validação de CNP
 
 ## Demo
 
-[[box4.devValidador CNPJ Alfanumérico](https://box4.dev/validador-cnpj-alfanumerico/)](https://box4.dev/validador-cnpj-alfanumerico/)
+[https://box4.dev/validador-cnpj-alfanumerico/](https://box4.dev/validador-cnpj-alfanumerico/)
 
 ## Localhost
 
