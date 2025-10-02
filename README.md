@@ -4,7 +4,7 @@ Este projeto oferece exemplos de cálculo de DV e métodos de validação de CNP
 
 ## Demo
 
-[Validador CNPJ Alfanumérico](http://marcelo-lourenco.github.io/validador-cnpj-alfanumerico)
+[Validador CNPJ Alfanumérico](https://box4.dev/validador-cnpj-alfanumerico/)
 
 ## Localhost
 
@@ -40,7 +40,7 @@ Os códigos da seção "Implementação" foram disponibilizados pela [Receita Fe
 
 [Pacote NPM - Gerador-BR](https://www.npmjs.com/package/gerador-br)
 
-[Gerador de Dados Online](https://marcelo-lourenco.github.io/gerador-br/geradores/)
+[Gerador de Dados Online](https://box4.dev/gerador-br/geradores/)
 
 [Extensão Chrome - Gerador de Dados Fictícios](https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam)
 
