@@ -4,11 +4,11 @@ Este projeto oferece exemplos de cálculo de DV e métodos de validação de CNP
 
 ## Demo
 
-[https://box4.dev/validador-cnpj-alfanumerico/](https://box4.dev/validador-cnpj-alfanumerico/)
+[https://marcelo-lourenco.github.io/validador-cnpj-alfanumerico/](https://marcelo-lourenco.github.io/validador-cnpj-alfanumerico/)
 
 ## Localhost
 
-Para visualizar corretamente a página. renomeie `index.html.ok` para  `index.html` execute o seguinte comando no diretório raiz:
+Para visualizar corretamente a página `index.html`, execute o seguinte comando no diretório raiz:
 
 **Usando Python 3:**
 
@@ -28,9 +28,18 @@ A página estará disponível em [http://localhost:8080/index.html](http://local
 
 - [Java README.md](./java/README.md)
 
+- [TypeScript README.md](./typescript/README.md)
+
+- [PHP README.md](./php/README.md)
+
+- [Laravel README.md](./laravel/README.md)
+
 ## Créditos
 
-Os códigos da seção "Implementação" foram disponibilizados pela [Receita Federal](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/cnpj-alfanumerico)
+- Os códigos em **PHP e Laravel** foram disponibilizados por [Ricardo Augusto Tulio](https://github.com/RicardoAugustoTulio).
+
+- Os códigos em **JavaScript, Java, Python e TypeScript** foram disponibilizados pela [Receita Federal](https://www.gov.br/receitafederal/pt-br/acesso-a-informacao/acoes-e-programas/programas-e-atividades/cnpj-alfanumerico).
+
 
 ---
 
@@ -40,7 +49,7 @@ Os códigos da seção "Implementação" foram disponibilizados pela [Receita Fe
 
 [Pacote NPM - Gerador-BR](https://www.npmjs.com/package/gerador-br)
 
-[Gerador de Dados Online](https://box4.dev/gerador-br/geradores/)
+[Gerador de Dados Online](https://box4.dev/pt-br/brasil/geradores)
 
 [Extensão Chrome - Gerador de Dados Fictícios](https://chromewebstore.google.com/detail/ipfihnddjaepajgdamecijfdefikdgam)
 
