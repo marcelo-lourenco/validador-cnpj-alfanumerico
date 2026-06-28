@@ -4,11 +4,11 @@ Este projeto oferece exemplos de cálculo de DV e métodos de validação de CNP
 
 ## Demo
 
-[https://marcelo-lourenco.github.io/validador-cnpj-alfanumerico/](https://marcelo-lourenco.github.io/validador-cnpj-alfanumerico/)
+[https://box4.dev/pt-br/brasil/validador-cnpj-alfanumerico](https://box4.dev/pt-br/brasil/validador-cnpj-alfanumerico)
 
 ## Localhost
 
-Para visualizar corretamente a página `index.html`, execute o seguinte comando no diretório raiz:
+Para visualizar corretamente o projeto em localhost, remova as linhas de redirecionamento no arquivo `index.html` e execute um dos comandos abaixo no diretório raiz:
 
 **Usando Python 3:**
 
